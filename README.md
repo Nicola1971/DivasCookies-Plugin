@@ -1,4 +1,4 @@
-# DivasCookies-Plugin
+# DivasCookies Plugin
 ## DivasCookies EU Cookie Law Policy Banner for MODX Evolution
 
 ### Plugin Author: Nicola Lambathakis
