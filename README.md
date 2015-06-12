@@ -1,6 +1,8 @@
 # DivasCookies Plugin
 ## DivasCookies EU Cookie Law Policy Banner for MODX Evolution
 
+#### Version 1.0.5 RC (Divas js version 0.5)
+
 ### Plugin Author: Nicola Lambathakis
 
 http://www.tattoocms.it/
