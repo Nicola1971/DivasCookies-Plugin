@@ -18,6 +18,6 @@ $.DivasCookies({
 	blockScripts			: true,
 	pageReload				: true,
 	acceptOnScroll			: false,
-	acceptOnClick			: true
+	acceptOnClick			: false
 });
 }(jQuery));
