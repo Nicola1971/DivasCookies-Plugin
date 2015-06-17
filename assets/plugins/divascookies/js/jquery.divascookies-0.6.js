@@ -1,11 +1,13 @@
 /*!
- * Title: Divas Cookies jQuery plugin - jquery.divascookies-0.5.js
+ * Title: Divas Cookies jQuery plugin - jquery.divascookies-0.6.js
  * Author: Federica Sibella (@musingspuntoit) and Michela Chiucini (@webislove) - Coding Divas (@CodingDivas)
  * Author URI: http://www.musings.it - http://www.colazionedamichy.it - http://www.codingdivas.net/divascookies
- * Version: 0.5
- * Date: 2015.06.03
+ * Version: 0.6
+ * Date: 2015.06.17
+ * License: MIT (http://opensource.org/licenses/MIT)
  * 
  * Changelog:
+ * 2015.06.17: removed acceptButtonSrc from debug option; no scroll + anchor click for privacy page; technical cookie name as an hidden option (for WP multisite in folder); check on window.scrollTop for compatibility
  * 2015.06.03: added accept on anchor click as an option (anchor on Divas Cookies banner is excluded)
  * 2015.06.01: added accept on scroll as an option and block iframes, img and input if necessary
  * 2015.05.29: added function to activate scripts previously blocked with divascookies-remove class
@@ -18,7 +20,8 @@
  */
 
 ;(function($) {
-	var divas_blockScripts = false;
+	var divas_blockScripts = false,
+		divas_cookieName = "DisplayDivasCookiesBanner";
 	
 	/**
 	 * Divas Cookies starter function to set options 
@@ -48,13 +51,17 @@
 					blockScripts			: false,							// set this to true if you blocked scripts by wrapping them with if($.DivasCookies.optedIn()){**script to be blocked**} (default false)
 					pageReload				: false,							// if true reloads the actual page after opt-in to show the previuosly blocked scripts (default false)
 					acceptOnScroll			: false,							// if true sets the Divas Cookie technical cookie on page scroll for cookies agreement (default false)
-					acceptOnClick			: false								// if true sets the Divas Cookie technical cookie on click on any <a> in the page except that on Divas Cookies banner for cookies agreement (default false)
+					acceptOnClick			: false,							// if true sets the Divas Cookie technical cookie on click on any <a> in the page except that on Divas Cookies banner for cookies agreement (default false)
+					cookieName				: "DisplayDivasCookiesBanner",		// name of the technical cookie set by Divas Cookies upon cookie acceptance (only for WP multisite in folder usage!)
+					excludePolicyPage		: false								// if true excludes the cookie policy page from acceptOnScroll and acceptOnClick (default false)
 				},
 		settings = $.extend({}, defaults, options);
 		
 		// set global block scripts variable immediately
 		divas_blockScripts = settings.blockScripts;
 		
+		// set global cookie name variable immediately
+		divas_cookieName = settings.cookieName;
 		
 		// start Divas Cookies main function on document ready
 		$(document).ready(function() {
@@ -67,7 +74,7 @@
 	 * or if we do not have to block scripts 
 	 */
 	$.DivasCookies.optedIn = function() {
-		return document.cookie.match(new RegExp('DisplayDivasCookiesBanner=([^;]+)')) || !divas_blockScripts;
+		return document.cookie.match(new RegExp(divas_cookieName+'=([^;]+)')) || !divas_blockScripts;
 	};
 	
 	/**
@@ -95,7 +102,9 @@
 					blockScripts			: false,							// set this to true if you blocked scripts by wrapping them with if($.DivasCookies.optedIn()){**script to be blocked**} (default false)
 					pageReload				: false,							// if true reloads the actual page after technical cookie has been set (opted-in) (default false)
 					acceptOnScroll			: false,							// if true sets the Divas Cookie technical cookie on page scroll for cookies agreement (default false)
-					acceptOnClick			: false								// if true sets the Divas Cookie technical cookie on click on any <a> in the page except that on Divas Cookies banner for cookies agreement (default false)
+					acceptOnClick			: false,							// if true sets the Divas Cookie technical cookie on click on any <a> in the page except that on Divas Cookies banner for cookies agreement (default false)
+					cookieName				: "DisplayDivasCookiesBanner",		// name of the technical cookie set by Divas Cookies upon cookie acceptance (only for WP multisite in folder usage!)
+					excludePolicyPage		: false								// if true excludes the cookie policy page from acceptOnScroll and acceptOnClick (default false)
 				},
 		settings = $.extend({}, defaults, options),
 		// internal variables
@@ -111,6 +120,11 @@
 		sandboxingClass		= "divascookies-sandboxing",
 		divasCookiesActivationDone		= false,
 		divasCookiesOutputBuffer		= "";
+		
+		// check the name of the technical cookie
+		if(settings.cookieName !== "" && settings.cookieName !== "DisplayDivasCookiesBanner") {
+			cookieName = settings.cookieName;
+		}
 		
 		// create Divas Cookies container & data
 		$divascookies = $("<div class='divascookies'></div>");
@@ -133,9 +147,6 @@
 			// acceptButtonText check
 			if(settings.acceptButtonText === "")
 				alert("Divas Cookies plugin warning!\nNo text for accept button: please check acceptButtonText value");
-			// acceptButtonSrc check
-			if(settings.acceptButtonSrc === "")
-				alert("Divas Cookies plugin warning!\nNo source for accept button image: please check acceptButtonSrc value");	
 		}
 		
 		// create banner container
@@ -215,24 +226,42 @@
 		
 		// action to accept on page scroll
 		if(settings.acceptOnScroll && !_checkCookie(cookieName)) {
-			$(document).on("scroll.divascookies", function() {
-				// things to do after cookies has been accepted
-				_divasAccept();
-				// remove bind on document scroll
-				$(document).off("scroll.divascookies");
-			});
+			// check if we have to exclude the policy page and we are on the policy page
+			if(document.location.href.indexOf(settings.cookiePolicyLink) !== -1  && settings.excludePolicyPage) {
+				//console.log("exclude!");
+			}
+			else {
+				// check original scrollbar position (not necessarily 0, if page was reloaded!)
+				var positionY = $(window).scrollTop(),
+					scrollDelta = 10;
+				$(window).on("scroll.divascookies", function() {
+					// check if the page has been scrolled at least 10px otherwise could be some responsive adjustment
+					if($(window).scrollTop() - positionY >= scrollDelta) {
+						// things to do after cookies has been accepted
+						_divasAccept();
+						// remove bind on document scroll
+						$(window).off("scroll.divascookies");
+					}
+				});
+			}
 		}
 		
 		// action to accept on click on any anchor in the page (except that on Divas Cookies banner)
 		if(settings.acceptOnClick && !_checkCookie(cookieName)) {
-			$(document).on("click.divascookies", "a", function() {
-				if(!$(this).parent().hasClass("divascookies-policy-link")) {
-					// things to do after cookies has been accepted
-					_divasAccept();
-					// remove bind on document scroll
-					$(document).off("click.divascookies", "a");
-				}
-			});
+			// check if we have to exclude the policy page and we are on the policy page
+			if(document.location.href.indexOf(settings.cookiePolicyLink) !== -1  && settings.excludePolicyPage) {
+				//console.log("exclude!");
+			}
+			else {
+				$(document).on("click.divascookies", "a", function() {
+					if(!$(this).parent().hasClass("divascookies-policy-link")) {
+						// things to do after cookies has been accepted
+						_divasAccept();
+						// remove bind on document click
+						$(document).off("click.divascookies", "a");
+					}
+				});
+			}
 		}
 		
 		return $divascookies;
@@ -294,7 +323,7 @@
 			
 			if(!divasCookiesActivationDone) {
 				
-				$("iframe." + activatorClass + ", img." + activatorClass + ", input." + activatorClass).each(function(index) {
+				$("iframe." + activatorClass + ", img." + activatorClass + ", input." + activatorClass).each(function() {
 					$(this).attr("src", $(this).attr("data-src"));
 				});
 				
@@ -317,7 +346,7 @@
 	   					document.body.appendChild(divascookiesScriptSandbox);
 	   						
 	   					divascookiesScriptSandbox.contentWindow.document.open();
-	   					if(src==undefined) {
+	   					if(src === undefined) {
 							divascookiesScriptSandbox.contentWindow.document.write("<scr" + "ipt id=\"dcSndbxdJS\"" + index +" type=\"text/javascript\">" + $( this ).html() + "</scr" + "ipt>");
 						}
 						else {
@@ -331,25 +360,30 @@
 						};
 					}
 					else if($(this).hasClass(bufferingClass)) {
-							var code;
+							var code,
+								prevCode,
+								regex1,
+								regex2,
+								res1,
+								res2;
 						
-							if(src == undefined) {
+							if(src === undefined) {
 								code = $(this).html();
 							
-								var prevCode = "",
-									regex1 = /(document\.write(\(.+?\)))/mi,
-									regex2 = /(document\.writeln(\(.+?\)))/mi;
+								prevCode = "";
+								regex1 = /(document\.write(\(.+?\)))/mi;
+								regex2 = /(document\.writeln(\(.+?\)))/mi;
 									
 								while(code != prevCode) {
 									prevCode = code;
-									var res1 = code.match(regex1);
-									var res2 = code.match(regex2);
+									res1 = code.match(regex1);
+									res2 = code.match(regex2);
 									code = code.replace(regex1, "divasCookiesOutputBuffer += $2");
 									code = code.replace(regex2, "divasCookiesOutputBuffer += $2\n");
 								}								
 								
 								divasCookiesOutputBuffer = "";
-								$(this).after("<scr" + "ipt type=\"text/javascript\">" + code + "</scr" + "ipt>")
+								$(this).after("<scr" + "ipt type=\"text/javascript\">" + code + "</scr" + "ipt>");
 								$(this).next().after(divasCookiesOutputBuffer);
 							}
 							else {
@@ -360,31 +394,31 @@
 						        	dataType: "text",
 						        	cache: false,
 						        	url: src,
-						        	success: function(response, status, xhr) {
+						        	success: function(response) {
 						            	code = response;
 						            }
 						        });
 						        
-						        var prevCode = "",
-									regex1 = /(document\.write(\(.+?\)))/mi,
-									regex2 = /(document\.writeln(\(.+?\)))/mi;
+						        prevCode = "";
+								regex1 = /(document\.write(\(.+?\)))/mi;
+								regex2 = /(document\.writeln(\(.+?\)))/mi;
 									
 								while(code != prevCode) {
 									prevCode = code;
-									var res1 = code.match(regex1);
-									var res2 = code.match(regex2);
+									res1 = code.match(regex1);
+									res2 = code.match(regex2);
 									code = code.replace(regex1, "divasCookiesOutputBuffer += $2");
 									code = code.replace(regex2, "divasCookiesOutputBuffer += $2\n");
 								}								
 								
 								divasCookiesOutputBuffer = "";
-								$(this).after("<scr" + "ipt type=\"text/javascript\">" + code + "</scr" + "ipt>")
+								$(this).after("<scr" + "ipt type=\"text/javascript\">" + code + "</scr" + "ipt>");
 								$(this).next().after(divasCookiesOutputBuffer);
 							}
 					}
 					else {
-						if(src == undefined) {
-							$(this).after("<scr" + "ipt type=\"text/javascript\">" + $( this ).html() + "</scr" + "ipt>")
+						if(src === undefined) {
+							$(this).after("<scr" + "ipt type=\"text/javascript\">" + $( this ).html() + "</scr" + "ipt>");
 						}
 						else {
 							$(this).after("<scr" + "ipt type=\"text/javascript\" src=\"" + src + "\"></scr" + "ipt>");

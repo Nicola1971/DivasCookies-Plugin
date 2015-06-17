@@ -18,6 +18,7 @@ $.DivasCookies({
 	blockScripts			: true,
 	pageReload				: true,
 	acceptOnScroll			: false,
-	acceptOnClick			: false
+	acceptOnClick			: false,
+	excludePolicyPage		: false
 });
 }(jQuery));
