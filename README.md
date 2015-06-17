@@ -3,7 +3,7 @@
 
 http://www.tattoocms.it/extras/plugins/divascookies-plugin.html
 
-#### Version 1.0.5 RC (Divas js version 0.5)
+#### Version 1.0.6 RC (Divas js version 0.6)
 
 ### Plugin Author: Nicola Lambathakis
 
@@ -38,6 +38,7 @@ http://www.codingdivas.net/divascookies/
 * Page Reload: if true reloads the actual page after opt-in to show the previuosly inline blocked scripts
 * Accept On Scroll: if true sets the Divas Cookie technical cookie on page scroll for cookies agreement
 * Accept On Click: if true sets the Divas Cookie technical cookie on click on any  in the page except that on Divas Cookies banner for cookies agreement
+* excludePolicyPage: If true excludes the policy page specified in cookiePolicyLink parameter is excluded from the acceptOnScroll and acceptOnClick rules
 
 ###Additional MODX Evolution Configuration Options
 
@@ -49,7 +50,16 @@ http://www.codingdivas.net/divascookies/
 * Static js Configuration file: Static js configuration file (overwite plugin configuration)
 * Static Configuration file path: path to js configuration file
 
-![divas](https://raw.githubusercontent.com/Nicola1971/training-materials/master/Images/divas-conf.jpg)
+
+
+
+# Plugin Updates
+
+### 1.0.6 RC
+* Updated to **Divas Cookies 0.6**
+* New Divas **excludePolicyPage** parameter:
+
+> If true excludes the policy page specified in cookiePolicyLink parameter is excluded from the acceptOnScroll and acceptOnClick rules (because the user should read the whole policy without being forced to accept on scroll or clicking any link in that page)
 
 
 
