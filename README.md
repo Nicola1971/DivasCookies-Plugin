@@ -3,7 +3,7 @@
 
 http://www.tattoocms.it/extras/plugins/divascookies-plugin.html
 
-#### Version 1.0.6 RC (Divas js version 0.6)
+#### Version 1.0.6 RC2 (Divas js version 0.6)
 
 ### Plugin Author: Nicola Lambathakis
 
