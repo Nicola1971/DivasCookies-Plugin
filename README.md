@@ -15,6 +15,14 @@ http://www.codingdivas.net/
 
 http://www.codingdivas.net/divascookies/
 
+# Installation
+
+Install with Package Manager https://github.com/Jako/PackageManager
+
+# Requires
+
+***Use FriendlyURLs*** enabled 
+
 # Plugin Configuration
 
 ##Divas Configuration Options (more infos at http://www.codingdivas.net/divascookies/)
@@ -46,14 +54,89 @@ http://www.codingdivas.net/divascookies/
 * Load jQuery js: load jQuery (if you don't use jQuery in your templates)
 * jQuery Path: path to jQuery library
 * Divas Js Path: path to Divas Js 
+* Load Divas Skin css: to disable divas ccs skin (so you can add Divas styles inside your default css) 
 * Divas Skin path: path to Divas CSS Skin
 * Static js Configuration file: Static js configuration file (overwite plugin configuration)
 * Static Configuration file path: path to js configuration file
 
-
-
-
 # Plugin Updates
+
+### 1.0.6 RC2
+* Moved Divas package from **assets/plugin** to **assets/js** (because MODX robot.txt disallow assets/plugin and Google can not index Divas css and js)
+* New plugin option **Load Divas Skin css** to disable divas ccs skin (so you can add Divas styles inside your default css)
+
+####Basic divas styles
+```
+/**
+ * Custom styles for Divas Cookies jquery plugin for Cookie Policy banner stylesheet
+ */
+
+.divascookies {
+	position: fixed;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	color: #f9fafc;
+	display: none;
+	z-index: 999999;
+}
+
+.divascookies > .divascookies-banner-container {
+	position: relative;
+	padding: 2px 5px;
+	overflow: hidden;
+	text-align: center;
+}
+
+.divascookies p.divascookies-banner-text {
+	position: relative;
+	line-height: 1.1em;
+	font-size: 14px;
+	display: inline-block;
+	padding: 0 10px 0 0;
+	color:#FFFFFF;
+}
+
+span.divascookies-policy-link {
+} 
+
+span.divascookies-policy-link a {
+	white-space: nowrap;	
+	color: #afeeee;
+	text-decoration: none;
+}
+
+span.divascookies-policy-link a:hover {
+	text-decoration: underline;
+	color: #5cdbdc;
+    transition: all 0.4s ease 0s;
+}
+
+.divascookies-banner-container > .divascookies-accept-button-container {
+	display: inline-block;
+	margin-top: 5px;
+}
+
+.divascookies-accept-button-container > .divascookies-accept-button-img {
+	
+}
+
+.divascookies-accept-button-container > .divascookies-accept-button-text {
+	font-size: 14px;
+	cursor: pointer;
+	background: #72c02c;
+	color: #FFFFFF;
+	padding: 3px 7px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;	
+    transition: all 0.3s ease 0s;
+}
+
+.divascookies-accept-button-container > .divascookies-accept-button-text:hover {
+	background: #adff2f;
+	color: #313131;
+}
+```
 
 ### 1.0.6 RC
 * Updated to **Divas Cookies 0.6**
