@@ -1,13 +1,9 @@
 /**
- * Divas Cookies jquery plugin for Cookie Policy banner stylesheet
- * @author: CodingDivas
- * @date: 2014/10/27
- * @version: 0.2 production
+ * Custom styles for Divas Cookies jquery plugin for Cookie Policy banner stylesheet
  */
 
 .divascookies {
 	position: fixed;
-	top: 0;
 	width: 100%;
 	background: rgba(0, 0, 0, 0.8);
 	color: #f9fafc;
