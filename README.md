@@ -64,6 +64,7 @@ Install with Package Manager https://github.com/Jako/PackageManager
 ### 1.0.6 RC2
 * Moved Divas package from **assets/plugin** to **assets/js** (because MODX robot.txt disallow assets/plugin and Google can not index Divas css and js)
 * New plugin option **Load Divas Skin css** to disable divas ccs skin (so you can add Divas styles inside your default css)
+* Removed some not needed styles from default custom css 
 
 ####Basic divas styles
 ```
