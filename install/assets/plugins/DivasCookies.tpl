@@ -6,12 +6,12 @@
  *
  * @author    Nicola Lambathakis
  * @category    plugin
- * @version    1.0.6  RC2
+ * @version    1.0.6  RC3
  * @internal    @events OnWebPagePrerender
  * @internal    @installset base
  * @internal    @disabled 1
  * @internal    @modx_category Cookies
- * @internal    @properties  &bannerText= Banner Text:;textarea;This website uses cookies in order to improve your web experience. &cookiePolicyLink= Policy Link:;string;cookie-policy.html &cookiePolicyLinkText= Policy Link Text:;string;More info &thirdPartyPolicyWidget= Third Party Policy Widget:;string; &acceptButtonText= Accept Button Text:;string;OK &acceptButtonSrc= Accept Button Src:;string; &openEffect= Open  Effect:;list;slideUp,slideDown,slideLeft,slideRight,fade;slideDown &openEffectDuration= Open Effect Duration:;string;1000 &openEffectEasing= Open Effect Easing:;list;swing,linear;swing &closeEffect= Close Effect:;list;slideUp,slideDown,slideLeft,slideRight,fade;slideUp &closeEffectDuration= Close Effect Duration:;string;1000 &closeEffectEasing= Close Effect Easing:;list;swing,linear;swing &debugMode= Use Debug Mode:;list;false,true;false &saveUserPreferences= Save User Preferences:;list;true,false;true &cookieDuration= Cookie Duration (days):;string;30 &blockScripts= Block Scripts:;list;true,false;true &pageReload= Page Reload:;list;true,false;true &acceptOnScroll= Accept On Scroll:;list;true,false;false &acceptOnClick= Accept On Click:;list;true,false;false &excludePolicyPage= Exclude Policy Page:;list;true,false;false &codePosition=Place Divas js code before closing tag;list;head,body;body &LoadJQuery= Load jQuery js:;list;yes,no;no &jQueryPath= jQuery Path:;string;assets/js/divascookies/js/jquery-2.1.4.min.js &DivasPath= Divas Js Path:;string;assets/js/divascookies/js/jquery.divascookies-0.6.min.js &LoadSkin= Load Divas Skin css:;list;yes,no;yes &divasSkin= Divas Skin path:;string;assets/js/divascookies/css/divascookies_style_custom.css &FileConf= Static js Configuration file:;list;yes,no;no &FileConfPath= Static Configuration file path:;string;assets/plugins/divascookies/config/divas.conf.js
+ * @internal    @properties  &bannerText= Banner Text:;textarea;This website uses cookies in order to improve your web experience. &cookiePolicyLink= Policy Link:;string;cookie-policy.html &cookiePolicyLinkText= Policy Link Text:;string;More info &thirdPartyPolicyWidget= Third Party Policy Widget:;string; &acceptButtonText= Accept Button Text:;string;OK &acceptButtonSrc= Accept Button Src:;string; &openEffect= Open  Effect:;list;slideUp,slideDown,slideLeft,slideRight,fade;slideDown &openEffectDuration= Open Effect Duration:;string;1000 &openEffectEasing= Open Effect Easing:;list;swing,linear;swing &closeEffect= Close Effect:;list;slideUp,slideDown,slideLeft,slideRight,fade;slideUp &closeEffectDuration= Close Effect Duration:;string;1000 &closeEffectEasing= Close Effect Easing:;list;swing,linear;swing &debugMode= Use Debug Mode:;list;false,true;false &saveUserPreferences= Save User Preferences:;list;true,false;true &cookieDuration= Cookie Duration (days):;string;30 &blockScripts= Block Scripts:;list;true,false;true &pageReload= Page Reload:;list;true,false;true &acceptOnScroll= Accept On Scroll:;list;true,false;false &acceptOnClick= Accept On Click:;list;true,false;false &excludePolicyPage= Exclude Policy Page:;list;true,false;false &codePosition=Place Divas js code before closing tag;list;head,body;body &LoadJQuery= Load jQuery js:;list;yes,no;no &jQueryPath= jQuery Path:;string;assets/js/divascookies/js/jquery-2.1.4.min.js &DivasPath= Divas Js Path:;string;assets/js/divascookies/js/jquery.divascookies-0.6.min.js &LoadSkin= Load Divas Skin css:;list;yes,no;yes &divasSkin= Divas Skin path:;string;assets/js/divascookies/css/divascookies_style_custom.css &FileConf= Static js Configuration file:;list;yes,no;no &FileConfPath= Static Configuration file path:;string;assets/plugins/divascookies/config/divas.conf.js &exclude_docs=Comma-separated IDs of documents to except;string;
  */
 
 /*
@@ -22,13 +22,13 @@ DivasCookies script by Coding Divas
 http://www.codingdivas.net/
 http://www.codingdivas.net/divascookies/
 
-Version 1.0.6 RC2
+Version 1.0.6 RC3
 Events: OnWebPagePrerender
 
  */
 
 /**
-&bannerText= Banner Text:;textarea;This website uses cookies in order to improve your web experience. &cookiePolicyLink= Policy Link:;string;cookie-policy.html &cookiePolicyLinkText= Policy Link Text:;string;More info &thirdPartyPolicyWidget= Third Party Policy Widget:;string; &acceptButtonText= Accept Button Text:;string;OK &acceptButtonSrc= Accept Button Src:;string; &openEffect= Open  Effect:;list;slideUp,slideDown,slideLeft,slideRight,fade;slideDown &openEffectDuration= Open Effect Duration:;string;1000 &openEffectEasing= Open Effect Easing:;list;swing,linear;swing &closeEffect= Close Effect:;list;slideUp,slideDown,slideLeft,slideRight,fade;slideUp &closeEffectDuration= Close Effect Duration:;string;1000 &closeEffectEasing= Close Effect Easing:;list;swing,linear;swing &debugMode= Use Debug Mode:;list;false,true;false &saveUserPreferences= Save User Preferences:;list;true,false;true &cookieDuration= Cookie Duration (days):;string;30 &blockScripts= Block Scripts:;list;true,false;true &pageReload= Page Reload:;list;true,false;true &acceptOnScroll= Accept On Scroll:;list;true,false;false &acceptOnClick= Accept On Click:;list;true,false;false &excludePolicyPage= Exclude Policy Page:;list;true,false;false &codePosition=Place Divas js code before closing tag;list;head,body;body &LoadJQuery= Load jQuery js:;list;yes,no;no &jQueryPath= jQuery Path:;string;assets/js/divascookies/js/jquery-2.1.4.min.js &DivasPath= Divas Js Path:;string;assets/js/divascookies/js/jquery.divascookies-0.6.min.js &LoadSkin= Load Divas Skin css:;list;yes,no;yes &divasSkin= Divas Skin path:;string;assets/js/divascookies/css/divascookies_style_custom.css &FileConf= Static js Configuration file:;list;yes,no;no &FileConfPath= Static Configuration file path:;string;assets/plugins/divascookies/config/divas.conf.js
+&bannerText= Banner Text:;textarea;This website uses cookies in order to improve your web experience. &cookiePolicyLink= Policy Link:;string;cookie-policy.html &cookiePolicyLinkText= Policy Link Text:;string;More info &thirdPartyPolicyWidget= Third Party Policy Widget:;string; &acceptButtonText= Accept Button Text:;string;OK &acceptButtonSrc= Accept Button Src:;string; &openEffect= Open  Effect:;list;slideUp,slideDown,slideLeft,slideRight,fade;slideDown &openEffectDuration= Open Effect Duration:;string;1000 &openEffectEasing= Open Effect Easing:;list;swing,linear;swing &closeEffect= Close Effect:;list;slideUp,slideDown,slideLeft,slideRight,fade;slideUp &closeEffectDuration= Close Effect Duration:;string;1000 &closeEffectEasing= Close Effect Easing:;list;swing,linear;swing &debugMode= Use Debug Mode:;list;false,true;false &saveUserPreferences= Save User Preferences:;list;true,false;true &cookieDuration= Cookie Duration (days):;string;30 &blockScripts= Block Scripts:;list;true,false;true &pageReload= Page Reload:;list;true,false;true &acceptOnScroll= Accept On Scroll:;list;true,false;false &acceptOnClick= Accept On Click:;list;true,false;false &excludePolicyPage= Exclude Policy Page:;list;true,false;false &codePosition=Place Divas js code before closing tag;list;head,body;body &LoadJQuery= Load jQuery js:;list;yes,no;no &jQueryPath= jQuery Path:;string;assets/js/divascookies/js/jquery-2.1.4.min.js &DivasPath= Divas Js Path:;string;assets/js/divascookies/js/jquery.divascookies-0.6.min.js &LoadSkin= Load Divas Skin css:;list;yes,no;yes &divasSkin= Divas Skin path:;string;assets/js/divascookies/css/divascookies_style_custom.css &FileConf= Static js Configuration file:;list;yes,no;no &FileConfPath= Static Configuration file path:;string;assets/plugins/divascookies/config/divas.conf.js &exclude_docs=Comma-separated IDs of documents to except;string;
 */
 
 $codePosition = isset($codePosition)? $codePosition: 'body';
@@ -37,6 +37,12 @@ $e= & $modx->Event;
 switch ($e->name) {
 
 case "OnWebPagePrerender" :
+$exclude_docs = explode(',',$exclude_docs);
+
+	$document_ids = $modx->getChildIds(0,9999);
+
+	foreach ($document_ids as $doc_id) {
+		if (!in_array($doc_id,$exclude_docs)) {
 // Divas Cookies skin
 	if ($LoadSkin == 'yes') {
 	$modx->documentOutput= str_replace('</head>', '<link rel="stylesheet" type="text/css" media="screen" href="'.$divasSkin.'" /></head>', $modx->documentOutput);
@@ -84,6 +90,7 @@ $.DivasCookies({
 </script>
 </'.$codePosition.'>', $modx->documentOutput);
 	}
+    	}
 		break;
    default :
        return; // stop.
