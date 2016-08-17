@@ -34,19 +34,16 @@ Events: OnWebPagePrerender
 $codePosition = isset($codePosition)? $codePosition: 'body';
 
 $e= & $modx->Event;
+
 switch ($e->name) {
-
 case "OnWebPagePrerender" :
-$exclude_docs = explode(',',$exclude_docs);
-
+	$exclude_docs = explode(',',$exclude_docs);
 	$document_ids = $modx->getChildIds(0,9999);
-
 	foreach ($document_ids as $doc_id) {
 		if (!in_array($doc_id,$exclude_docs)) {
 // Divas Cookies skin
-	if ($LoadSkin == 'yes') {
 	$modx->documentOutput= str_replace('</head>', '<link rel="stylesheet" type="text/css" media="screen" href="'.$divasSkin.'" /></head>', $modx->documentOutput);
-}
+
 //  jQuery 2.1.4
 if ($LoadJQuery == 'yes') {
 	$modx->documentOutput= str_replace('</'.$codePosition.'>', '<script src="'.$jQueryPath.'"></script></'.$codePosition.'>', $modx->documentOutput);
@@ -82,16 +79,19 @@ $.DivasCookies({
 	blockScripts			: '.$blockScripts.',
 	pageReload				: '.$pageReload.',
 	acceptOnScroll			: '.$acceptOnScroll.',
-	acceptOnClick			: '.$acceptOnClick.',
-    excludePolicyPage		: '.$excludePolicyPage.'
+	acceptOnClick			: '.$acceptOnClick.'
 });
 }(jQuery));
 
 </script>
 </'.$codePosition.'>', $modx->documentOutput);
-	}
-    	}
-		break;
-   default :
-       return; // stop.
+        }
+		}
+
+	break;
+				} // end foreach	
+	default :
+	return;
+	break;
+			
 }
