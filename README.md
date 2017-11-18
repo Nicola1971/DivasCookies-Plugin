@@ -1,5 +1,5 @@
 # DivasCookies Plugin
-## DivasCookies EU Cookie Law Policy Banner for MODX Evolution
+## DivasCookies EU Cookie Law Policy Banner for Evolution cms 
 
 http://www.tattoocms.it/extras/plugins/divascookies-plugin.html
 
